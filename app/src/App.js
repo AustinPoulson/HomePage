@@ -11,6 +11,7 @@ import SoundCloud from './assets/soundcloud.svg';
 import Gmail from './assets/gmail.svg';
 import StackOverflow from './assets/stackoverflow.svg';
 import Github from './assets/github.svg';
+import EtherMedia from './assets/EtherMediaIcon.png'
 import HF from './assets/hacker.png';
 import './App.css';
 
@@ -30,6 +31,7 @@ export default function App() {
         <Link name='Stack Overflow' icon={StackOverflow} link='https://stackoverflow.com/'/>
         <Link name='HF' icon={HF} link='https://hackforums.net/'/>
         <Link name='Github' icon={Github} link='https://github.com/'/>
+        <Link name='EtherMedia' icon={EtherMedia} link='https://ethermedia.app/'/>
       </div>
     </div>
   );
@@ -48,4 +50,3 @@ function Link({name, icon, link}) {
     </a>
   )
 }
-
