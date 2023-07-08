@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/HomePage/static/css/main.65220b53.css",
+    "main.css": "/HomePage/static/css/main.a2321030.css",
     "main.js": "/HomePage/static/js/main.82fa3ddd.js",
     "static/js/787.c1112931.chunk.js": "/HomePage/static/js/787.c1112931.chunk.js",
     "static/media/instagram.png": "/HomePage/static/media/instagram.3d6c8f9c6e4bb23ce95e.png",
+    "static/media/background.jpg": "/HomePage/static/media/background.0c536153ae16fb40d10b.jpg",
     "static/media/EtherMediaIcon.png": "/HomePage/static/media/EtherMediaIcon.033fddf7251633d48369.png",
     "static/media/hacker.png": "/HomePage/static/media/hacker.488ec1ee0855a54850f1.png",
     "static/media/netflix.svg": "/HomePage/static/media/netflix.831a8ecdbf3049c294d930b43f60637a.svg",
@@ -17,12 +18,12 @@
     "static/media/gmail.svg": "/HomePage/static/media/gmail.cf6e9da6207069eaa596237538127bcb.svg",
     "static/media/stackoverflow.svg": "/HomePage/static/media/stackoverflow.1f41c55ba16bbea79949dbc7c6c7bdc2.svg",
     "static/media/youtube.svg": "/HomePage/static/media/youtube.6d5f0726fd66ae187d6228aecf9e151b.svg",
-    "main.65220b53.css.map": "/HomePage/static/css/main.65220b53.css.map",
+    "main.a2321030.css.map": "/HomePage/static/css/main.a2321030.css.map",
     "main.82fa3ddd.js.map": "/HomePage/static/js/main.82fa3ddd.js.map",
     "787.c1112931.chunk.js.map": "/HomePage/static/js/787.c1112931.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.65220b53.css",
+    "static/css/main.a2321030.css",
     "static/js/main.82fa3ddd.js"
   ]
 }
