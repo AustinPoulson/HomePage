@@ -3,6 +3,7 @@
   background-color: #282c34;
   height: 100vh;
   width: 100vw;
+  background-image: url(./assets/background.jpg);
 }
 
 .LinkList {
@@ -14,6 +15,7 @@
 .LinkContainer {
   height: 40px;
   width: 195px;
+  background-color: #282c34;
   border: 2px solid rgb(142, 201, 201);
   border-radius: 7px;
   flex-direction: row;
