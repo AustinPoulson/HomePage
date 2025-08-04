@@ -1,29 +1,16 @@
 {
   "files": {
-    "main.css": "/HomePage/static/css/main.a2321030.css",
-    "main.js": "/HomePage/static/js/main.82fa3ddd.js",
+    "main.css": "/HomePage/static/css/main.1be02156.css",
+    "main.js": "/HomePage/static/js/main.5c7ea4e8.js",
     "static/js/787.c1112931.chunk.js": "/HomePage/static/js/787.c1112931.chunk.js",
-    "static/media/instagram.png": "/HomePage/static/media/instagram.3d6c8f9c6e4bb23ce95e.png",
     "static/media/background.jpg": "/HomePage/static/media/background.0c536153ae16fb40d10b.jpg",
-    "static/media/EtherMediaIcon.png": "/HomePage/static/media/EtherMediaIcon.033fddf7251633d48369.png",
-    "static/media/hacker.png": "/HomePage/static/media/hacker.488ec1ee0855a54850f1.png",
-    "static/media/netflix.svg": "/HomePage/static/media/netflix.831a8ecdbf3049c294d930b43f60637a.svg",
-    "static/media/amazon.svg": "/HomePage/static/media/amazon.8a708a0e0e9afcef8ab2be41c10b3ffb.svg",
-    "static/media/soundcloud.svg": "/HomePage/static/media/soundcloud.76b516256910f29dc8330d7c69b86c83.svg",
-    "static/media/github.svg": "/HomePage/static/media/github.7d6b7d8513e06be0a531dc9303e0bafe.svg",
-    "static/media/reddit.svg": "/HomePage/static/media/reddit.e2083858701ec5da0a8407ee38165fd4.svg",
-    "static/media/twitch.svg": "/HomePage/static/media/twitch.2154fb6d10c0d32f494a1fc24837154a.svg",
-    "static/media/twitter.svg": "/HomePage/static/media/twitter.0994819c4416f510adad167ed5b5828b.svg",
     "index.html": "/HomePage/index.html",
-    "static/media/gmail.svg": "/HomePage/static/media/gmail.cf6e9da6207069eaa596237538127bcb.svg",
-    "static/media/stackoverflow.svg": "/HomePage/static/media/stackoverflow.1f41c55ba16bbea79949dbc7c6c7bdc2.svg",
-    "static/media/youtube.svg": "/HomePage/static/media/youtube.6d5f0726fd66ae187d6228aecf9e151b.svg",
-    "main.a2321030.css.map": "/HomePage/static/css/main.a2321030.css.map",
-    "main.82fa3ddd.js.map": "/HomePage/static/js/main.82fa3ddd.js.map",
+    "main.1be02156.css.map": "/HomePage/static/css/main.1be02156.css.map",
+    "main.5c7ea4e8.js.map": "/HomePage/static/js/main.5c7ea4e8.js.map",
     "787.c1112931.chunk.js.map": "/HomePage/static/js/787.c1112931.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a2321030.css",
-    "static/js/main.82fa3ddd.js"
+    "static/css/main.1be02156.css",
+    "static/js/main.5c7ea4e8.js"
   ]
 }
