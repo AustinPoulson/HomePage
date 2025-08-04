@@ -1,5 +1,7 @@
 # HomePage
 
+Visit the site: [https://austinpoulson.github.io/HomePage/](https://austinpoulson.github.io/HomePage/)
+
 This is my personal 'new tab' page. Feel free to use it. 
 
 ## How to use
