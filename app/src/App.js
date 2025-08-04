@@ -1,52 +1,191 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import Twitter from './assets/twitter.svg';
-import Reddit from './assets/reddit.svg';
-import YouTube from './assets/youtube.svg';
-import Twitch from './assets/twitch.svg';
-import Instagram from './assets/instagram.png';
-import Netflix from './assets/netflix.svg';
-import Amazon from './assets/amazon.svg';
-import SoundCloud from './assets/soundcloud.svg';
-import Gmail from './assets/gmail.svg';
-import StackOverflow from './assets/stackoverflow.svg';
-import Github from './assets/github.svg';
-import EtherMedia from './assets/EtherMediaIcon.png'
-import HF from './assets/hacker.png';
 import './App.css';
 
 export default function App() {
+  const [sites, setSites] = useState([]);
+  const [isDragOver, setIsDragOver] = useState(false);
+
+  useEffect(() => {
+    const sitesData = localStorage.getItem('sites');
+    if (sitesData) {
+      setSites(JSON.parse(sitesData));
+    } else {
+      setSites([]);
+    }
+  }, []);
+
+  function handleDragOver(e) {
+    e.preventDefault();
+    setIsDragOver(true);
+  }
+
+  function handleDragLeave(e) {
+    e.preventDefault();
+    setIsDragOver(false);
+  }
+
+  function handleDrop(e) {
+    e.preventDefault();
+    setIsDragOver(false);
+    
+    const files = e.dataTransfer.files;
+    
+    if (files.length > 0) {
+      const file = files[0];
+      
+      const reader = new FileReader();
+      
+      reader.onload = (event) => {
+        const content = event.target.result;
+        
+        const lines = content.split('\n')
+          .map(line => line.trim())
+          .filter(line => line.length > 0)
+          .map(line => line.replace(/^https?:\/\//, '').replace(/\/$/, ''));
+        
+        const newSites = [...sites];
+        
+        lines.forEach(line => {
+          const site = line.toLowerCase();
+          if (!newSites.includes(site)) {
+            newSites.push(site);
+          }
+        });
+        
+        localStorage.setItem('sites', JSON.stringify(newSites));
+        setSites(newSites);
+      };
+      
+      reader.onerror = (error) => {
+        console.error('Error reading file:', error);
+      };
+      
+      reader.readAsText(file);
+    }
+  }
+
+  function handleDeleteSite(siteToDelete) {
+    const updatedSites = sites.filter(site => site !== siteToDelete);
+    localStorage.setItem('sites', JSON.stringify(updatedSites));
+    setSites(updatedSites);
+  }
+
   return (
-    <div className='App'>
+    <div 
+      className={`App ${isDragOver ? 'drag-over' : ''}`}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
       <div className='LinkList'>
-        <Link name='Twitter' icon={Twitter} link='https://twitter.com/'/>
-        <Link name='Reddit' icon={Reddit} link='https://www.reddit.com/'/>
-        <Link name='YouTube' icon={YouTube} link='https://www.youtube.com/'/>
-        <Link name='Twitch' icon={Twitch} link='https://www.twitch.tv/'/>
-        <Link name='Instagram' icon={Instagram} link='https://www.instagram.com/'/>
-        <Link name='Netflix' icon={Netflix} link='https://www.netflix.com/'/>
-        <Link name='Amazon' icon={Amazon} link='https://www.amazon.com/'/>
-        <Link name='SoundCloud' icon={SoundCloud} link='https://soundcloud.com/'/>
-        <Link name='Gmail' icon={Gmail} link='https://mail.google.com/'/>
-        <Link name='Stack Overflow' icon={StackOverflow} link='https://stackoverflow.com/'/>
-        <Link name='HF' icon={HF} link='https://hackforums.net/'/>
-        <Link name='Github' icon={Github} link='https://github.com/'/>
-        <Link name='EtherMedia' icon={EtherMedia} link='https://ethermedia.app/'/>
+        {sites.map((site, index) => (
+          <Link key={index} name={site} link={`https://${site}`} onDelete={handleDeleteSite} />
+        ))}
+        <AddSite sites={sites} setSites={setSites} />
       </div>
     </div>
   );
 }
 
-function Link({name, icon, link}) {
+
+function Link({name, link, onDelete}) {
+  const [currentIcon, setCurrentIcon] = useState(`https://${name}/favicon.ico`);
+  const [iconIndex, setIconIndex] = useState(0);
+  
+  const faviconUrls = [
+    `https://${name}/favicon.ico`,
+    `https://${name}/favicon.png`,
+    `https://${name}/apple-touch-icon.png`,
+    `https://www.google.com/s2/favicons?domain=${name}`,
+    `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${name}&size=32`
+  ];
+
+  function handleImageError() {
+    if (iconIndex < faviconUrls.length - 1) {
+      const nextIndex = iconIndex + 1;
+      setIconIndex(nextIndex);
+      setCurrentIcon(faviconUrls[nextIndex]);
+    }
+  }
+
+  function getDisplayName(siteName) {
+    const name = siteName.split('.')[0];
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  }
+
+  function handleDelete(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    onDelete(name);
+  }
+
   return (
     <a className='LinkContainer' href={link}>
+      <button className='DeleteButton' onClick={handleDelete}>×</button>
       <div className='LinkIconContainer'>
-        <img className='LinkImage' src={icon} alt={name}></img>
+        <img 
+          className='LinkImage' 
+          src={currentIcon} 
+          alt={name}
+          onError={handleImageError}
+        />
       </div>
       <div className='LinkTextContainer'>
-        <p className='LinkText'>{name}</p>
+        <p className='LinkText'>{getDisplayName(name)}</p>
       </div>
       <div className='LinkStatusContainer'></div>
     </a>
+  )
+}
+
+function AddSite({ sites, setSites }) {
+  const [newSite, setNewSite] = useState('');
+
+  function handleAddSite() {
+    if (newSite.trim()) {
+      const siteToAdd = newSite.trim().toLowerCase();
+      
+      if (sites.includes(siteToAdd)) {
+        setNewSite('');
+        return;
+      }
+      
+      const currentSites = sites;
+      const updatedSites = [...currentSites, siteToAdd];
+      
+      localStorage.setItem('sites', JSON.stringify(updatedSites));
+      setSites(updatedSites);
+      setNewSite('');
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      handleAddSite();
+    }
+  }
+
+  return (
+    <div className='LinkContainer'>
+      <div className='LinkTextContainer'>
+        <input 
+          type="text" 
+          placeholder="Enter site url" 
+          value={newSite}
+          onChange={(e) => setNewSite(e.target.value)}
+          onKeyDown={handleKeyDown}
+          className='AddSiteInput'
+        />
+      </div>
+      <div className='LinkStatusContainer'>
+        <button 
+          onClick={handleAddSite}
+          className='AddSiteButton'
+        >
+          Add
+        </button>
+      </div>
+    </div>
   )
 }

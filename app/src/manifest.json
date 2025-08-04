@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Most Visited Sites",
+  "version": "1.0",
+  "permissions": [
+    "history",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html"
+  }
+}

@@ -4,12 +4,22 @@
   height: 100vh;
   width: 100vw;
   background-image: url(./assets/background.jpg);
+  transition: all 0.3s ease;
+}
+
+.App.drag-over {
+  background-color: #1a1d23;
+  border: 3px dashed rgb(142, 201, 201);
+  box-shadow: inset 0 0 20px rgba(142, 201, 201, 0.3);
 }
 
 .LinkList {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   padding: 40px;
+  max-height: 90%;
+  align-content: flex-start;
 }
 
 .LinkContainer {
@@ -20,8 +30,10 @@
   border-radius: 7px;
   flex-direction: row;
   display: flex;
-  margin-bottom: 10px;
+  margin: 5px;
+  padding: 2px;
   text-decoration: none;
+  position: relative;
 }
 
 .LinkIconContainer {
@@ -30,13 +42,14 @@
   width: 35px;
   align-items: center;
   justify-content: center;
+  margin-right: 10px;
 }
 
 .LinkTextContainer {
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .LinkStatusContainer {
@@ -52,4 +65,49 @@
 .LinkImage {
   height: 30px;
   width: 30px;
+}
+
+.DeleteButton {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4444;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.LinkContainer:hover .DeleteButton {
+  display: flex;
+}
+
+.AddSiteInput {
+  background: transparent;
+  border: none;
+  color: rgb(142, 201, 201);
+  font-size: 18px;
+  width: 100%;
+  outline: none;
+}
+
+.AddSiteButton {
+  background: transparent;
+  border: none;
+  color: rgb(142, 201, 201);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
